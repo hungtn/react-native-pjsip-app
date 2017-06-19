@@ -21,6 +21,7 @@ export const ACCOUNT_CHANGED = 'pjsip/ACCOUNT_CHANGED';
 export const ACCOUNT_REGISTRATION_CHANGED = 'pjsip/ACCOUNT_REGISTRATION_CHANGED';
 export const ACCOUNT_DELETED = 'pjsip/ACCOUNT_DELETED';
 
+import infoLog from '../utils/infoLog'
 import * as Navigation from './navigation'
 
 /**
@@ -70,6 +71,15 @@ export function init() {
                 }
             });
         }
+        if (accounts.length == 0) {
+             dispatch(createAccount(
+                // {"name":"779530","username":"779530","domain":"sip.zadarma.com","password":"2dJv54cNph","proxy":"","transport":"","regServer":"","regTimeout":""}
+                {"name":"5001","username":"5001","domain":"demo-pbx.carusto.com","password":"test","proxy":"","transport":"","regServer":"","regTimeout":""}
+            ));
+        }
+        let route = {name: 'settings'};
+
+        dispatch(Navigation.goAndReplace(route));
     }
 }
 
@@ -80,14 +90,13 @@ export function init() {
 function initPushNotifications() {
     return async function(dispatch, getState) {
 
-        console.log("initPushNotifications", 1);
+        infoLog("initPushNotifications", 1);
 
         /**
          * Fires when received VoIP PushNotification.
          * We should re-register active accounts if application in background.
          */
         VoipPushNotification.addEventListener('notification', (notification) => {
-
             // -----
             let {endpoint, accounts} = getState().pjsip;
             for (let id in accounts) {
@@ -103,6 +112,7 @@ function initPushNotifications() {
         let voipToken = new Promise((resolve, reject) => {
             voipReject = reject;
             VoipPushNotification.addEventListener('register', (token) => {
+                console.log('addEventListener');
                 resolve(token);
             });
 
@@ -125,13 +135,13 @@ function initPushNotifications() {
         try {
             tokens['voip'] = await voipToken;
         } catch (e) {
-            console.log("Failed to obtain VoIP token", e);
+            infoLog("Failed to obtain VoIP token", e);
         }
 
         try {
             tokens['im'] = await imToken;
         } catch (e) {
-            console.log("Failed to obtain IM token", e);
+            infoLog("Failed to obtain IM token", e);
         }
 
         dispatch({type: INIT_PN, payload: {tokens}});
@@ -221,7 +231,7 @@ function initCallKitIntegration() {
         // TODO: Other actions like DTMF
 
         RNCallKit.addEventListener('answerCall', () => {
-            console.log("JS RNCallKit", "answerCall", incomingCall);
+            infoLog("JS RNCallKit", "answerCall", incomingCall);
 
             let {calls} = getState().pjsip;
             let call = null;
@@ -236,7 +246,7 @@ function initCallKitIntegration() {
         });
 
         RNCallKit.addEventListener('endCall', () => {
-            console.log("JS RNCallKit", "endCall", activeCall, incomingCall);
+            infoLog("JS RNCallKit", "endCall", activeCall, incomingCall);
 
             let {calls} = getState().pjsip;
             let call = null;
@@ -307,7 +317,7 @@ export function createAccount(configuration) {
         let {endpoint, tokens} = getState().pjsip;
 
 
-        console.log("createAccount tokens", endpoint, tokens);
+        infoLog("createAccount tokens", endpoint, tokens);
 
         let contactUriParams = Platform.select({
             ios: [
@@ -318,15 +328,15 @@ export function createAccount(configuration) {
             android: `;im-type=sip`,
         });
 
-        console.log("createAccount 1", configuration);
-        console.log("createAccount 2", contactUriParams);
+        infoLog("createAccount 1", configuration);
+        infoLog("createAccount 2", contactUriParams);
 
         let account = await endpoint.createAccount({
             ...configuration,
             contactUriParams
         });
 
-        console.log("createAccount 3");
+        infoLog("createAccount 3");
 
         dispatch({type: ACCOUNT_CREATED, payload: {account}});
 
