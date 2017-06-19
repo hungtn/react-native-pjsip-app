@@ -5,10 +5,12 @@
 #import "../../node_modules/react-native-voip-push-notification/ios/RNVoipPushNotification/RNVoipPushNotificationManager.h"
 #import "RCTPushNotificationManager.h"
 
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
   NSURL *jsCodeLocation = jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
 
   // Initialise RNCallKit
@@ -31,16 +33,17 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
-  
-  
+
   return YES;
 }
 
 // Handle updated push credentials
 - (void)pushRegistry:(PKPushRegistry *)registry didUpdatePushCredentials:(PKPushCredentials *)credentials forType:(NSString *)type {
   // Register VoIP push token (a property of PKPushCredentials) with server
+  NSLog(@"HEHEHE%@",credentials.token);
   [RNVoipPushNotificationManager didUpdatePushCredentials:credentials forType:(NSString *)type];
 }
+
 
 // Handle incoming pushes
 - (void)pushRegistry:(PKPushRegistry *)registry didReceiveIncomingPushWithPayload:(PKPushPayload *)payload forType:(NSString *)type {

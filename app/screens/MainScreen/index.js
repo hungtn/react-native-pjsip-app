@@ -13,6 +13,7 @@ import NetworkSettingsScreen from '../NetworkSettingsScreen'
 import MediaSettingsScreen from '../MediaSettingsScreen'
 
 import Viewport from '../../components/Viewport'
+import infoLog from '../../utils/infoLog'
 
 class App extends Component {
 
@@ -50,6 +51,8 @@ class App extends Component {
     }
 
     render() {
+        infoLog('This is MainScreen');
+        infoLog(this.props);
         const {navigation} = this.props;
         const full = navigation.current.name == "call";
         const barColor = "#36454b";

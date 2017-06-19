@@ -20,7 +20,6 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
-		4C2076EA6BC2440593B439CC /* libRNVoipPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54711EAB7EC04BBA8D223E30 /* libRNVoipPushNotification.a */; };
 		5C7293B74B2F415DB570C6BA /* libRTCPjSip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A02F838D0848808BEB6E89 /* libRTCPjSip.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
@@ -31,6 +30,7 @@
 		A6CC3C821E76C0D5002B36F5 /* CallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6CC3C811E76C0D5002B36F5 /* CallKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A6CC3CA01E76C0E3002B36F5 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6CC3C9F1E76C0E3002B36F5 /* Intents.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B8AFD24C312F48DABC794152 /* libRNCallKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF8CE15B0E2640809CE26FD6 /* libRNCallKit.a */; };
+		C98EAE971EEABBBE00DC94E4 /* libRNVoipPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A626C88A1E7ADDDA00CAFB07 /* libRNVoipPushNotification.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -275,7 +275,6 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = PjApp/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		33970944AC804752B9153E74 /* RTCPjSip.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RTCPjSip.xcodeproj; path = "../node_modules/react-native-pjsip/ios/RTCPjSip.xcodeproj"; sourceTree = "<group>"; };
-		54711EAB7EC04BBA8D223E30 /* libRNVoipPushNotification.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVoipPushNotification.a; sourceTree = "<group>"; };
 		581842C61F864841B1C7C06E /* RNCallKit.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCallKit.xcodeproj; path = "../node_modules/react-native-callkit/ios/RNCallKit.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
@@ -312,10 +311,10 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
+				C98EAE971EEABBBE00DC94E4 /* libRNVoipPushNotification.a in Frameworks */,
 				9DC6B1EBBE0E48B09ECD68AC /* libBVLinearGradient.a in Frameworks */,
 				5C7293B74B2F415DB570C6BA /* libRTCPjSip.a in Frameworks */,
 				B8AFD24C312F48DABC794152 /* libRNCallKit.a in Frameworks */,
-				4C2076EA6BC2440593B439CC /* libRNVoipPushNotification.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -962,6 +961,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = PjApp/PjApp.entitlements;
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
@@ -969,6 +969,7 @@
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../node_modules/react-native/Libraries/PushNotificationIOS/**",
+					"$(SRCROOT)/../node_modules/react-native-voip-push-notification/ios/RNVoipPushNotification/**",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = PjApp/Info.plist;
@@ -983,7 +984,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hakisaman.mobile.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hak.lotusApp;
 				PRODUCT_NAME = PjApp;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1004,6 +1005,7 @@
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../node_modules/react-native/Libraries/PushNotificationIOS/**",
+					"$(SRCROOT)/../node_modules/react-native-voip-push-notification/ios/RNVoipPushNotification/**",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = PjApp/Info.plist;
@@ -1018,7 +1020,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hakisaman.mobile.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hak.lotusApp;
 				PRODUCT_NAME = PjApp;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
